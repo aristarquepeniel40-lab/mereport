@@ -68,3 +68,29 @@ du §8) n'est plus très loin : il ne reste que `mecheck`, ou on peut
 considérer que la chaîne actuelle (`mecore` → `medata` → `meindicator`
 → `mereport`) constitue déjà un pipeline complet et utilisable sur un
 cas réel, pas seulement un jouet.
+
+## 7. Ajout : intégration avec `mecheck` (contrôle qualité avant rapport)
+
+Ajouté après le premier test complet du pipeline sur données réelles.
+`mecheck` est en `Suggests` (même logique que `readxl` dans `medata`) —
+`mereport` fonctionne toujours sans lui, avec dégradation propre
+(avertissement, pas d'erreur).
+
+```r
+# Comportement inchangé (retrocompatible) :
+project |> generate_report(path = "rapport.md")
+
+# Avec controle qualite integre au rapport (section dediee) :
+project |> generate_report(path = "rapport.md", check = TRUE)
+
+# Controle qualite BLOQUANT : leve une erreur si une regle echoue,
+# le rapport n'est alors jamais genere :
+project |> generate_report(path = "rapport.md", check = TRUE, block_on_failure = TRUE)
+```
+
+Testé sur 5 cas : non-régression (`check=FALSE`), section ajoutée sur
+projet propre, avertissement visible sur projet incohérent (non
+bloquant), blocage effectif (`block_on_failure=TRUE`), dégradation
+propre si `mecheck` n'est pas installé. Tous confirmés, y compris sur
+les vraies données agricoles (rapport avec 4/4 règles respectées,
+intégré directement dans le document généré).

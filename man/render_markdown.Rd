@@ -4,12 +4,16 @@
 \alias{render_markdown}
 \title{Rendre un rapport en fichier Markdown}
 \usage{
-render_markdown(report, path)
+render_markdown(report, path, check_report = NULL)
 }
 \arguments{
 \item{report}{Un \code{mecore::me_report}.}
 
 \item{path}{Chemin du fichier \code{.md} a ecrire.}
+
+\item{check_report}{Un \code{mecheck::me_check_report} optionnel (voir
+\code{check_before_report()}). Si fourni, ajoute une section "Controle
+qualite" au rapport, avec un avertissement visible en cas d'echec.}
 }
 \value{
 \code{path}, de maniere invisible.
@@ -17,5 +21,5 @@ render_markdown(report, path)
 \description{
 Ecrit un \code{.md} avec : titre + metadonnees du projet, table des
 indicateurs, texte narratif, et un bloc de provenance (reutilise
-\code{mecore::build_provenance()} — voir idee innovante #4 de \code{mecore}).
+\code{mecore::build_provenance()} -- voir idee innovante #4 de \code{mecore}).
 }

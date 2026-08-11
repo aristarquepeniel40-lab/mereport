@@ -14,10 +14,12 @@ Imports:
     mecore (>= 0.0.0.9000),
     S7 (>= 0.2.0)
 Suggests:
+    mecheck,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Collate:
     '00_build.R'
     '01_render.R'
     '02_methods.R'
+    '03_check_integration.R'
     'zzz.R'

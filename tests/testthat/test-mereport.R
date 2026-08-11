@@ -51,3 +51,42 @@ test_that("le generique mecore::generate_report() dispatche vers me_project", {
   p |> mecore::generate_report(path = path)
   expect_true(file.exists(path))
 })
+
+test_that("check=FALSE (par defaut) ne modifie pas le comportement existant", {
+  p <- helper_project()
+  path <- tempfile(fileext = ".md")
+  p |> generate_report(path = path)
+  contenu <- readLines(path)
+  expect_false(any(grepl("Controle qualite", contenu)))
+})
+
+test_that("check=TRUE ajoute une section controle qualite au rapport", {
+  p <- helper_project()
+  path <- tempfile(fileext = ".md")
+  p |> generate_report(path = path, check = TRUE)
+  contenu <- readLines(path)
+  expect_true(any(grepl("Controle qualite", contenu)))
+})
+
+test_that("block_on_failure=TRUE bloque la generation sur un projet incoherent", {
+  meta_bad <- mecore::me_metadata(
+    project_name = "p", organization = "o", country = "c", donor = "d", manager = "m",
+    start_date = as.Date("2026-12-31"), end_date = as.Date("2026-01-01"),
+    version = "0.1", description = "d", objectives = "o", sdgs = character(0)
+  )
+  p_bad <- mecore::me_project(name = "p", metadata = meta_bad, datasets = list(),
+                                indicators = list(), logframe = NULL)
+  path <- tempfile(fileext = ".md")
+  expect_error(
+    p_bad |> generate_report(path = path, check = TRUE, block_on_failure = TRUE),
+    regexp = "bloquee"
+  )
+  expect_false(file.exists(path))
+})
+
+test_that("check_before_report degrade proprement si mecheck n'est pas installe", {
+  skip_if(requireNamespace("mecheck", quietly = TRUE), "mecheck est installe, ce test ne s'applique pas")
+  p <- helper_project()
+  expect_warning(res <- check_before_report(p), regexp = "mecheck")
+  expect_null(res)
+})
