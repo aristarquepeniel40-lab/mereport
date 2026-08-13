@@ -1,8 +1,0 @@
-^walking_skeleton\.R$
-^GUIDE_MEREPORT\.md$
-^.*\.Rproj$
-^\.Rproj\.user$
-^LICENSE\.md$
-^_pkgdown\.yml$
-^[0-9A-F]{8}$
-^shared$
