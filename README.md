@@ -1,5 +1,7 @@
 # mereport
 
+[![R-CMD-check](https://github.com/aristarquepeniel40-lab/mereport/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/aristarquepeniel40-lab/mereport/actions/workflows/R-CMD-check.yaml)
+
 **Génération de rapports pour l'écosystème [MEverse](https://github.com/aristarquepeniel40-lab/mecore).**
 
 Assemble un `mecore::me_report` à partir d'un `mecore::me_project`, et
