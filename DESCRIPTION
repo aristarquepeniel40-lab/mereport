@@ -23,3 +23,6 @@ Collate:
     '02_methods.R'
     '03_check_integration.R'
     'zzz.R'
+Remotes:
+    aristarquepeniel40-lab/mecore,
+    aristarquepeniel40-lab/mecheck
