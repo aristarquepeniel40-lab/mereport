@@ -6,3 +6,4 @@
 ^_pkgdown\.yml$
 ^[0-9A-F]{8}$
 ^shared$
+^\.github$
