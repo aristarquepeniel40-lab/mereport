@@ -7,7 +7,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/aristarquepeniel40-lab/mereport/blob/master/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/aristarquepeniel40-lab/mereport/blob/v1.0.0/DESCRIPTION)
 
 Segue A (2026). *mereport: Generation de rapports pour l'ecosysteme
 MEverse*. R package version 1.0.0,
